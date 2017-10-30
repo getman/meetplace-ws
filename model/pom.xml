@@ -3,20 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <parent>
+        <groupId>ru.aparfenov.meetplace</groupId>
+        <artifactId>meetplace</artifactId>
+        <version>${projectVersion}</version>
+    </parent>
     <groupId>ru.aparfenov.meetplace</groupId>
-    <artifactId>meetplace</artifactId>
-    <version>${projectVersion}</version>
-    <packaging>pom</packaging>
-
-    <properties>
-        <projectVersion>1.0.0</projectVersion>
-    </properties>
-
-    <modules>
-        <module>rest-ws</module>
-        <module>jsp-restful-ws</module>
-        <module>model</module>
-    </modules>
-
+    <artifactId>model</artifactId>
+    <version>1.0.0</version>
+    <packaging>ejb</packaging>
+    
 </project>
