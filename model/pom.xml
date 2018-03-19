@@ -11,6 +11,6 @@
     <groupId>ru.aparfenov.meetplace</groupId>
     <artifactId>model</artifactId>
     <version>1.0.0</version>
-    <packaging>ejb</packaging>
+    <!--<packaging>ejb</packaging>-->
     
 </project>

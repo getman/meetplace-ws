@@ -4,9 +4,11 @@ package ru.aparfenov.meetplace.model;
  * Created by AParfenov on 27.10.2017.
  */
 public class MeetPoint {
-    private long x = 1;
-    private long y = 1;
+    private long x;
+    private long y;
     private String id = "qwerty";
+
+    public MeetPoint() {}
 
     public long getX() {
         return x;
