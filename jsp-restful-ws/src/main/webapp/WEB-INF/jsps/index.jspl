@@ -1,3 +1,0 @@
-<jsp:useBean id="meetPoint" class="ru.aparfenov.meetplace.model.MeetPoint"/>
-<%meetPoint.getId();
-out.print("cube of 5 is "+m);%>
