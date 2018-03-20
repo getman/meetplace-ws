@@ -1,0 +1,1 @@
+wsimport -keep -p ru.aparfenov.ws.soap.api http://localhost:8080/meetpointws?wsdl
