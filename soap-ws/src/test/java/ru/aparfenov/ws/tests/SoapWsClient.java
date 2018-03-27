@@ -11,7 +11,8 @@ import java.net.URL;
  */
 public class SoapWsClient {
     public static void main(String[] args) throws Exception {
-        URL url = new URL("http://localhost:8080/meetpointws?wsdl");
+//        URL url = new URL("http://localhost:8080/meetpointws?wsdl");
+        URL url = new URL("http://localhost:8082/HelloSpring-servlet/hello-spring");
 
         MeetPointSoapWSImplService mpService = new MeetPointSoapWSImplService(url);
         MeetPointSoapWS wsProxy = mpService.getMeetPointSoapWSImplPort();

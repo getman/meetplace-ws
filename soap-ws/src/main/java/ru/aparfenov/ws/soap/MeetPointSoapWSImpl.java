@@ -5,7 +5,6 @@ import ru.aparfenov.meetplace.model.MeetPoint;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -13,28 +12,29 @@ import java.util.Date;
  */
 @WebService(endpointInterface = "ru.aparfenov.ws.soap.MeetPointSoapWS")
 public class MeetPointSoapWSImpl implements MeetPointSoapWS {
-    @WebMethod
+    @Override
     public MeetPoint createMP() {
         return null;
     }
 
-    @WebMethod
+    @Override
     public MeetPoint getMP(String id) {
         MeetPoint mp = new MeetPoint();
         mp.setId(id + " spring :)" + new SimpleDateFormat("dd-MM-yyyy / HH:mm:SS").format(new Date()));
         return mp;
     }
 
-    @WebMethod
+    @Override
     public MeetPoint updateMP(String id, MeetPoint newMP) {
         return null;
     }
 
-    @WebMethod
+    @Override
     public boolean deleteMP(String id) {
         return false;
     }
 
+    @Override
     public int getMpAmount() {
         return 10;
     }

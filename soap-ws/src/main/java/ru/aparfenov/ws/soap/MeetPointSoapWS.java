@@ -13,8 +13,12 @@ import javax.jws.WebService;
 public interface MeetPointSoapWS {
     @WebMethod
     public MeetPoint createMP();
+    @WebMethod
     public MeetPoint getMP(String id);
+    @WebMethod
     public MeetPoint updateMP(String id, MeetPoint newMP);
+    @WebMethod
     public boolean deleteMP(String id);
+    @WebMethod
     public int getMpAmount();
 }

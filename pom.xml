@@ -13,10 +13,31 @@
         <projectVersion>1.0.0</projectVersion>
     </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <target>1.8</target>
+                    <source>1.8</source>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
     <modules>
         <!--<module>rest-ws</module>-->
         <module>jersey-restful-ws</module>
         <module>model</module>
+        <module>soap-ws</module>
+        <module>soap-ws-war</module>
+        <!--<module>rest-ws</module>-->
     </modules>
 
 </project>
