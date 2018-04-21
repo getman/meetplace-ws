@@ -1,7 +1,7 @@
 package ru.aparfenov.meetplace.rest;
 
-import ru.aparfenov.meetplace.model.MeetPoint;
-import ru.aparfenov.meetplace.storage.dao.MPStorageDAO;
+import ru.aparfenov.meetplace.jpa.enities.MeetPointEntity;
+import ru.aparfenov.meetplace.model.storage.dao.MPStorageDAO;
 
 /**
  * Created by ArtemParfenov on 09.11.2017.
@@ -11,12 +11,12 @@ public class MPRestfulService implements MPService {
 
     public MPRestfulService() {}
     @Override
-    public MeetPoint getMP(String mpId) {
-        return new MeetPoint();
+    public MeetPointEntity getMP(String mpId) {
+        return new MeetPointEntity();
     }
 
     @Override
-    public void addMp(MeetPoint newMp) {
+    public void addMp(MeetPointEntity newMp) {
         mpStorageDAO.addMP(newMp);
     }
 
