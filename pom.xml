@@ -36,7 +36,8 @@
         <module>jersey-restful-ws</module>
         <module>model</module>
         <module>soap-ws</module>
-        <module>soap-ws-war</module>
+        <!--<module>soap-ws-war</module>-->
+        <module>ejb-dao</module>
         <!--<module>rest-ws</module>-->
     </modules>
 
