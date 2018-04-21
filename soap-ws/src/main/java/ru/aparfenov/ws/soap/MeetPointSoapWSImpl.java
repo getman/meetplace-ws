@@ -1,8 +1,9 @@
 package ru.aparfenov.ws.soap;
 
-import ru.aparfenov.meetplace.model.MeetPoint;
+import ru.aparfenov.meetplace.dao.ejb.MPStorageEjbDAO;
+import ru.aparfenov.meetplace.jpa.enities.MeetPointEntity;
 
-import javax.jws.WebMethod;
+import javax.ejb.EJB;
 import javax.jws.WebService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,20 +13,24 @@ import java.util.Date;
  */
 @WebService(endpointInterface = "ru.aparfenov.ws.soap.MeetPointSoapWS")
 public class MeetPointSoapWSImpl implements MeetPointSoapWS {
+    @EJB
+    private MPStorageEjbDAO storageDao;
     @Override
-    public MeetPoint createMP() {
+    public MeetPointEntity createMP() {
         return null;
     }
 
     @Override
-    public MeetPoint getMP(String id) {
-        MeetPoint mp = new MeetPoint();
+    public MeetPointEntity getMP(String id) {
+
+//        MeetPointEntity mp = new MeetPointEntity();
+        MeetPointEntity mp = storageDao.getMP(id);
         mp.setId(id + " spring :)" + new SimpleDateFormat("dd-MM-yyyy / HH:mm:SS").format(new Date()));
         return mp;
     }
 
     @Override
-    public MeetPoint updateMP(String id, MeetPoint newMP) {
+    public MeetPointEntity updateMP(String id, MeetPointEntity newMP) {
         return null;
     }
 

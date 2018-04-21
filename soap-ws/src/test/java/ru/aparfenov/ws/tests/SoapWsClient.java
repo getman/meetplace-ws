@@ -21,7 +21,10 @@ public class SoapWsClient {
                 System.out.println(wsProxy.getMP("Hello").getId());
                 Thread.sleep(1000);
             } catch (WebServiceException wse) {
+                wse.printStackTrace();
+//                System.out.println(wse.getMessage());
                 System.out.println("Something wrong, trying to reconnect..");
+                Thread.sleep(1000);
                 try {
                     mpService = new MeetPointSoapWSImplService(url);
                     wsProxy = mpService.getMeetPointSoapWSImplPort();

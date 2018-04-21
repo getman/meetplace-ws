@@ -4,7 +4,7 @@ package ru.aparfenov.ws.soap;
  * Created by ArtemParfenov on 18.03.2018.
  */
 
-import ru.aparfenov.meetplace.model.MeetPoint;
+import ru.aparfenov.meetplace.jpa.enities.MeetPointEntity;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -12,11 +12,11 @@ import javax.jws.WebService;
 @WebService
 public interface MeetPointSoapWS {
     @WebMethod
-    public MeetPoint createMP();
+    public MeetPointEntity createMP();
     @WebMethod
-    public MeetPoint getMP(String id);
+    public MeetPointEntity getMP(String id);
     @WebMethod
-    public MeetPoint updateMP(String id, MeetPoint newMP);
+    public MeetPointEntity updateMP(String id, MeetPointEntity newMP);
     @WebMethod
     public boolean deleteMP(String id);
     @WebMethod
