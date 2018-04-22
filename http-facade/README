@@ -1,0 +1,2 @@
+Responsible for getting simple HTTP browser requests as a plain RESTfull
+(without any jax-rs/SpingREST frameworks support like Jersey and others)

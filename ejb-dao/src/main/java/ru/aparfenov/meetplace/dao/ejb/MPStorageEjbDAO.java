@@ -1,6 +1,7 @@
 package ru.aparfenov.meetplace.dao.ejb;
 
-import ru.aparfenov.meetplace.model.storage.dao.MPStorageDAO;
+
+import ru.aparfenov.storage.dao.MPStorageDAO;
 
 import javax.ejb.Local;
 

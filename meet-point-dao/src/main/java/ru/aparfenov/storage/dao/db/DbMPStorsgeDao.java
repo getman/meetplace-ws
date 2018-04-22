@@ -1,4 +1,4 @@
-package ru.aparfenov.storage.dao;
+package ru.aparfenov.storage.dao.db;
 
 import ru.aparfenov.meetplace.jpa.enities.MeetPointEntity;
 

@@ -38,7 +38,8 @@
         <module>soap-ws</module>
         <!--<module>soap-ws-war</module>-->
         <module>ejb-dao</module>
-        <!--<module>rest-ws</module>-->
+        <module>http-facade</module>
+        <module>war-http-facade</module>
     </modules>
 
 </project>

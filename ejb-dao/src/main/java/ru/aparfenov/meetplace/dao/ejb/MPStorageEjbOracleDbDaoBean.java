@@ -1,6 +1,6 @@
 package ru.aparfenov.meetplace.dao.ejb;
 
-import ru.aparfenov.meetplace.jpa.enities.MeetPointEntity;
+import ru.aparfenov.meetplace.model.MeetPoint;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -21,7 +22,12 @@ public class  MPStorageEjbOracleDbDaoBean implements MPStorageEjbDAO {
     private Connection conn;
 
     @Override
-    public MeetPointEntity getMP(String id) {
+    public List<MeetPoint> getMPList() {
+        return null;
+    }
+
+    @Override
+    public MeetPoint getMP(String id) {
 //        StringBuilder result = new StringBuilder();
         int rowCount = 0;
         try {
@@ -47,13 +53,13 @@ public class  MPStorageEjbOracleDbDaoBean implements MPStorageEjbDAO {
                 e.printStackTrace();
             }
         }
-        MeetPointEntity mpEntity = new MeetPointEntity();
-        mpEntity.setId("count=" + rowCount);
+        MeetPoint mpEntity = new MeetPoint();
+//        mpEntity.setId("count=" + rowCount);
         return mpEntity;
     }
 
     @Override
-    public void addMP(MeetPointEntity newMP) {
+    public void addMP(MeetPoint newMP) {
 
     }
 }
