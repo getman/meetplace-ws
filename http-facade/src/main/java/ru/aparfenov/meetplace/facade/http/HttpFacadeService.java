@@ -1,7 +1,7 @@
 package ru.aparfenov.meetplace.facade.http;
 
+import ru.aparfenov.meetplace.dao.ejb.MPStorageEjbDAO;
 import ru.aparfenov.meetplace.model.MeetPoint;
-import ru.aparfenov.storage.dao.MPStorageDAO;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -19,12 +19,13 @@ import java.util.List;
 
 @WebServlet("/http-facade")
 public class HttpFacadeService extends HttpServlet {
+    private static final String MP_LIST_JSP_PARAM = "meet-point-list";
     @EJB
-    private MPStorageDAO mpStorageDAO;
+    private MPStorageEjbDAO mpStorageDAO;
 
     /**called for getting the list of MPs or a single MP identified by id*/
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processSearching(request, response);
     }
 
@@ -44,17 +45,20 @@ public class HttpFacadeService extends HttpServlet {
         response.sendRedirect("http-facade");
     }
 
-    private List<MeetPoint> processSearching(HttpServletRequest request, HttpServletResponse response) {
-        return mpStorageDAO.getMPList();
+    private void processSearching(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        List<MeetPoint> mpList = mpStorageDAO.getMPList();
+        if (mpList != null && !mpList.isEmpty()) {
+            request.setAttribute(MP_LIST_JSP_PARAM, mpList);
+        }
+        request.getServletContext().getRequestDispatcher("/WEB-INF/pages/jsp/meet-point.jsp").forward(request, response);
+
     }
 
     private void handleAddition(HttpServletRequest request) {
-        String newMPId = request.getParameter("new-mp-id");
-        long newMPx = Long.valueOf(request.getParameter("new-mp-x"));
-        long newMPy = Long.valueOf(request.getParameter("new-mp-y"));
+        String newMPId = request.getParameter("new-meet-point-id");
+        long newMPx = Long.valueOf(request.getParameter("new-meet-point-x"));
+        long newMPy = Long.valueOf(request.getParameter("new-meet-point-y"));
         MeetPoint newMP = new MeetPoint(newMPId, newMPx, newMPy);
-//        if (!newMP.isEmpty()) {
-            mpStorageDAO.addMP(newMP);
-//        }
+        mpStorageDAO.addMP(newMP);
     }
 }

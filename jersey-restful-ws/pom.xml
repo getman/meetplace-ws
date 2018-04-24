@@ -37,6 +37,11 @@
             <version>2.1</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>ru.aparfenov.meetplace</groupId>
+            <artifactId>meet-point-dao</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -39,6 +39,8 @@
         <!--<module>soap-ws-war</module>-->
         <module>ejb-dao</module>
         <module>http-facade</module>
+        <module>meet-point-dao</module>
+        <module>db-dao</module>
         <module>war-http-facade</module>
     </modules>
 

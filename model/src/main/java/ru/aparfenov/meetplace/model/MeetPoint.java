@@ -16,4 +16,16 @@ public class MeetPoint {
         this.x = x;
         this.y = y;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public long getX() {
+        return x;
+    }
+
+    public long getY() {
+        return y;
+    }
 }

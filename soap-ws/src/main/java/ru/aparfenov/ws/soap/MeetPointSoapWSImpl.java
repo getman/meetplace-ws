@@ -23,8 +23,8 @@ public class MeetPointSoapWSImpl implements MeetPointSoapWS {
     @Override
     public MeetPointEntity getMP(String id) {
 
-//        MeetPointEntity mp = new MeetPointEntity();
-        MeetPointEntity mp = storageDao.getMP(id);
+        MeetPointEntity mp = new MeetPointEntity();
+//        MeetPointEntity mp = storageDao.getMP(id);
         mp.setId(id + " spring :)" + new SimpleDateFormat("dd-MM-yyyy / HH:mm:SS").format(new Date()));
         return mp;
     }
