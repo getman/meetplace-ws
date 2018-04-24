@@ -19,7 +19,7 @@ import java.util.Locale;
 public class  MPStorageEjbOracleDbDaoBean implements MPStorageEjbDAO {
     private static final String GET_MP_LIST_QUERY = "select * from meet_point";
     private static final String ADD_MP_QUERY = "insert into meet_point(id,x,y) values(?, ?, ?)";
-    @Resource(name="myOracleDataSource")
+    @Resource(name="jdbc/myOracleDataSource")
     private DataSource myDs;
     private Connection conn;
 
