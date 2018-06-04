@@ -5,13 +5,13 @@ package ru.aparfenov.meetplace.model;
  */
 public class MeetPoint {
     private String id;
-    private long x;
-    private long y;
+    private double x;
+    private double y;
 
     public MeetPoint() {
     }
 
-    public MeetPoint(String id, long x, long y) {
+    public MeetPoint(String id, double x, double y) {
         this.id = id;
         this.x = x;
         this.y = y;
@@ -21,11 +21,11 @@ public class MeetPoint {
         return id;
     }
 
-    public long getX() {
+    public double getX() {
         return x;
     }
 
-    public long getY() {
+    public double getY() {
         return y;
     }
 }

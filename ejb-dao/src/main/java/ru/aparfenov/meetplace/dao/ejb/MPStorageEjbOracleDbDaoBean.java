@@ -46,8 +46,8 @@ public class  MPStorageEjbOracleDbDaoBean implements MPStorageEjbDAO {
                 try {
                     while (rs.next()) {
                         String id = rs.getString(1);
-                        long x = rs.getLong(2);
-                        long y = rs.getLong(3);
+                        double x = rs.getDouble(2);
+                        double y = rs.getDouble(3);
                         MeetPoint newMP = new MeetPoint(id, x, y);
                         result.add(newMP);
                     }
@@ -100,8 +100,8 @@ public class  MPStorageEjbOracleDbDaoBean implements MPStorageEjbDAO {
                 try {
                     while (rs.next()) {
                         String id = rs.getString(1);
-                        long x = rs.getLong(2);
-                        long y = rs.getLong(3);
+                        double x = rs.getDouble(2);
+                        double y = rs.getDouble(3);
                         MeetPoint newMP = new MeetPoint(id, x, y);
                         result.add(newMP);
                     }
@@ -137,8 +137,8 @@ public class  MPStorageEjbOracleDbDaoBean implements MPStorageEjbDAO {
                 try {
                     while (rs.next()) {
                         String id = rs.getString(1);
-                        long x = rs.getLong(2);
-                        long y = rs.getLong(3);
+                        double x = rs.getDouble(2);
+                        double y = rs.getDouble(3);
                         MeetPoint newMP = new MeetPoint(id, x, y);
                         result.add(newMP);
                     }
@@ -162,8 +162,8 @@ public class  MPStorageEjbOracleDbDaoBean implements MPStorageEjbDAO {
                 try {
                     PreparedStatement ps = conn.prepareStatement(ADD_MP_QUERY);
                     ps.setString(1, newMP.getId());
-                    ps.setLong(2, newMP.getX());
-                    ps.setLong(3, newMP.getY());
+                    ps.setDouble(2, newMP.getX());
+                    ps.setDouble(3, newMP.getY());
                     ps.executeUpdate();
                 } catch (SQLException e) {
                     e.printStackTrace();

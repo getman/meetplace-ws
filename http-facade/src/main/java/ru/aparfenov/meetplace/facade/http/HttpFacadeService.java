@@ -73,8 +73,8 @@ public class HttpFacadeService extends HttpServlet {
 
     private void handleAddition(HttpServletRequest request) {
         String newMPId = request.getParameter("new-meet-point-id");
-        long newMPx = Long.valueOf(request.getParameter("new-meet-point-x"));
-        long newMPy = Long.valueOf(request.getParameter("new-meet-point-y"));
+        double newMPx = Double.valueOf(request.getParameter("new-meet-point-x"));
+        double newMPy = Double.valueOf(request.getParameter("new-meet-point-y"));
         MeetPoint newMP = new MeetPoint(newMPId, newMPx, newMPy);
         mpStorageDAO.addMP(newMP);
     }
