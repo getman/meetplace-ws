@@ -15,6 +15,13 @@
 
             // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
             map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
+
+            YMaps.Events.observe(map, map.Events.Click, function (map, mEvent) {
+                var newGeoPoint = mEvent.getGeoPoint();
+                var placemark = new YMaps.Placemark(newGeoPoint, {hasHint: true});
+                placemark.setStyle("default#greenPoint");
+                map.addOverlay(placemark);
+            });
         })
     </script>
 </head>
