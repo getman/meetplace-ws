@@ -8,63 +8,68 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
     <script type="text/javascript">
-        // Создает обработчик события window.onLoad
+        //Creates a listener for the window.onLoad event
         YMaps.jQuery(function () {
-            // Создает экземпляр карты и привязывает его к созданному контейнеру
+            //creates map instance and refers it to the created container
             var map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
-
-            // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
+            //setting up initial parameters for viewing the map: the map cented and scale
             map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
-
+            //click event listener
             YMaps.Events.observe(map, map.Events.Click, function (map, mEvent) {
                 var newGeoPoint = mEvent.getGeoPoint();
+                var xCoord = newGeoPoint.getX().toString();
+                var yCoord = newGeoPoint.getY().toString();
                 var placemark = new YMaps.Placemark(newGeoPoint, {hasHint: true});
                 placemark.setStyle("default#greenPoint");
+                //adding the content to just created ballon: a form for adding a new meet point
+                placemark.setBalloonContent("<div><form method=\"POST\" action=\"http-facade\">"+
+                    "    <p>"+
+                    "        <label for=\"item\">Add new meet point, id:</label>"+
+                    "        <input id=\"new-meet-point-id\" type=\"text\" name=\"new-meet-point-id\"/>"+
+                    "        <label for=\"item\">x:</label>"+
+                    "        <input id=\"new-meet-point-x\" type=\"text\" name=\"new-meet-point-x\" value=\"" +
+                        xCoord +
+                        "\"/>"+
+                    "        <label for=\"item\">y:</label>"+
+                    "        <input id=\"new-meet-point-y\" type=\"text\" name=\"new-meet-point-y\" value=\"" +
+                        yCoord +
+                        "\"/>"+
+                    "        <input type=\"hidden\" name=\"action\" value=\"add\"/>"+
+                    "        <input type=\"submit\" value=\"add\"/>"+
+                    "    </p>"+
+                    "</form></div>");
                 map.addOverlay(placemark);
             });
         })
+
+
     </script>
 </head>
 <body>
 Meet point full list
 <% Object meetPointList = request.getAttribute("meet-point-list");%>
 <% if ((meetPointList != null) && (!((List<MeetPoint>) meetPointList).isEmpty())) { %>
-<%--<form method="POST" action="http-facade">
-    <p>--%>
-        <table border="3">
-            <tr>
-                <td>id</td>
-                <td>x</td>
-                <td>y</td>
-                <%--<td>-</td>--%>
-            </tr>
-            <% for (MeetPoint nextMP : (List<MeetPoint>) meetPointList) { %>
-            <tr>
-                <%--id--%>
-                <td><%= nextMP.getId() %></td>
-                <%--x coord--%>
-                <td><%= nextMP.getX() %></td>
-                <%--x coord--%>
-                <td><%= nextMP.getY() %></td>
-                <%--delete button--%>
-                <%--<td><input type="hidden" name="delete-by-mp-id" value="<%= nextMP.getId() %>"/>
-                    <input type="submit" value="delete"/></td>--%>
-            </tr>
-            <% } %>
-        </table>
-<%--    </p>
-</form>--%>
+    <table border="3">
+        <tr>
+            <td>id</td>
+            <td>x</td>
+            <td>y</td>
+        </tr>
+        <% for (MeetPoint nextMP : (List<MeetPoint>) meetPointList) { %>
+        <tr>
+            <%--id--%>
+            <td><%= nextMP.getId() %></td>
+            <%--x coord--%>
+            <td><%= nextMP.getX() %></td>
+            <%--x coord--%>
+            <td><%= nextMP.getY() %></td>
+        </tr>
+        <% } %>
+    </table>
 <% } else { %>
 no meet points
 <% } %>
 
-<%--deletes the meet point from the database--%>
-<%--<form method="POST" action="http-facade">
-    <p>
-        <input type="hidden" name="action" value="delete"/>
-        <input type="submit" value="delete"/>
-    </p>
-</form>--%>
 
 <form method="POST" action="http-facade">
     <p>
@@ -85,12 +90,6 @@ no meet points
 <%--Deleting meet point--%>
 <form method="POST" action="http-facade">
     <p>
-        <%--<label for="item">Add new meet point, id:</label>
-        <input id="new-meet-point-id" type="text" name="new-meet-point-id"/>
-
-        <label for="item">x:</label>
-        <input id="new-meet-point-x" type="text" name="new-meet-point-x"/>--%>
-
         <label for="item">Delete item by id:</label>
         <input id="delete-by-mp-id" type="text" name="delete-by-mp-id"/>
 
