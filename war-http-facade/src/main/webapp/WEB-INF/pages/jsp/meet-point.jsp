@@ -40,6 +40,19 @@
                     "</form></div>");
                 map.addOverlay(placemark);
             });
+
+            //creating a list of existing meet points
+            <% Object existingMPList = request.getAttribute("meet-point-list");%>
+            <% if ((existingMPList != null) && (!((List<MeetPoint>) existingMPList).isEmpty())) { %>
+                <% int i = 0;%>
+                <% for (MeetPoint nextMP : (List<MeetPoint>) existingMPList) { %>
+                    var nextMeetPoint<%=i%> = new YMaps.GeoPoint(<%= nextMP.getX() %>, <%= nextMP.getY() %>);
+                    var nextMPPlacemark<%=i%> = new YMaps.Placemark(nextMeetPoint<%=i%>, {hasHint: true});
+                    nextMPPlacemark<%=i%>.setBalloonContent("<div>id = <%= nextMP.getId() %></div>");
+                    map.addOverlay(nextMPPlacemark<%=i%>);
+                    <% i++;%>
+                <% } %>
+            <% } %>
         })
 
 
