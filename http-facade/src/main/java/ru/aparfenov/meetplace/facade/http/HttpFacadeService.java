@@ -5,6 +5,10 @@ import ru.aparfenov.meetplace.dao.db.PreparedStatementParamType;
 import ru.aparfenov.meetplace.dao.ejb.MPStorageEjbDAO;
 import ru.aparfenov.meetplace.model.MeetPoint;
 
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
+import javax.annotation.security.RunAs;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +25,7 @@ import java.util.Map;
  * Created by ArtemParfenov on 21.04.2018.
  */
 
+@DeclareRoles({"TestAdminRole", "TestManagerRole", "TestUserRole"})
 @WebServlet("/http-facade")
 public class HttpFacadeService extends HttpServlet {
     private static final String MP_COMMON_LIST_JSP_PARAM = "meet-point-list";
@@ -32,12 +37,14 @@ public class HttpFacadeService extends HttpServlet {
     @EJB
     private MPStorageEjbDAO mpStorageDAO;
 
+    @PermitAll
     /**called for getting the list of MPs or a single MP identified by id*/
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processInitialLoading(request, response);
     }
 
+    @PermitAll
     /**called when inserting/deleting the new MP*/
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -62,6 +69,7 @@ public class HttpFacadeService extends HttpServlet {
         }
     }
 
+    @RolesAllowed("TestUserRole")
     private void processInitialLoading(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<MeetPoint> mpList = mpStorageDAO.getMPList();
         if (mpList != null && !mpList.isEmpty()) {
@@ -71,6 +79,7 @@ public class HttpFacadeService extends HttpServlet {
 
     }
 
+    @RolesAllowed("TestUserRole")
     private void handleAddition(HttpServletRequest request) {
         String newMPId = request.getParameter("new-meet-point-id");
         double newMPx = Double.valueOf(request.getParameter("new-meet-point-x"));
@@ -79,6 +88,7 @@ public class HttpFacadeService extends HttpServlet {
         mpStorageDAO.addMP(newMP);
     }
 
+    @RolesAllowed("TestUserRole")
     /**processes meet point searching according to user defined parameters*/
     private void handleSearching(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Map<String, PreparedStatementParam> params = new HashMap<>();
@@ -114,6 +124,7 @@ public class HttpFacadeService extends HttpServlet {
 
     }
 
+    @RolesAllowed("TestUserRole")
     private void handleDeletion(HttpServletRequest request) {
         String id = request.getParameter(DELETE_BY_MP_ID_PARAM);
         mpStorageDAO.deleteMp(id);

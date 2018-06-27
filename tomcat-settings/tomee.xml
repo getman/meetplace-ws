@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+  <!-- see http://tomee.apache.org/containers-and-resources.html -->
+
+  <!-- activate next line to be able to deploy applications in apps -->
+  <!-- <Deployments dir="apps" /> -->
+	<!-- <Resource id="myOracleDataSource" type="javax.sql.DataSource">
+		jdbcDriver = oracle.jdbc.OracleDriver
+		jdbcUrl = jdbc:oracle:thin:@193.124.113.157:1521:orcl
+		password = 12345678
+		userName = aparfenovdb
+	</Resource> -->
+
+	<!--<Resource id="myOracleDataSource" type="DataSource">
+    JdbcDriver oracle.jdbc.OracleDriver
+    JdbcUrl jdbc:oracle:thin:@localhost:1521:xe
+    Password 12345678
+    UserName aparfenovdb
+	</Resource>-->
+	
+	<Resource id="jdbc/myOracleDataSource" type="DataSource">
+    JdbcDriver oracle.jdbc.OracleDriver
+    JdbcUrl jdbc:oracle:thin:@localhost:1521:xe
+    Password 12345678
+    UserName aparfenov
+	</Resource>
+	<!--<Resource id="myOracleDataSource" 
+		type="javax.sql.DataSource" 
+		driverClassName="oracle.jdbc.OracleDriver"
+		url="jdbc:oracle:thin:@127.0.0.1:1521:xe" 
+		password="12345678"
+		userName="aparfenov">-->
+</tomee>
